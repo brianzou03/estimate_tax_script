@@ -1,17 +1,11 @@
 # H&R Block Tax Calculator Script
 This script accesses H&R Block's tax calculator at https://www.hrblock.com/tax-calculator/.
 The script uses Selenium and Selenium's chrome webdriver to click/input values into
-the H&R Block tax calculator based on user provided inputs.
+the H&R Block tax calculator based on user provided inputs and returns the estimated tax owed.
 
 ## Installations
 ```
 $ pip install selenium
-$ pip install webdriver_manager
-```
-
-## Possibly required installation
-```
-$ pip3 install packaging
 ```
 
 ## Known Issues

@@ -3,16 +3,18 @@ from selenium.webdriver.common.by import By
 
 # Initiate the driver
 # This chrome driver is compatible with windows and chrome version 107
+# For any other drivers, download and replace the chromedriver.exe
 driver = webdriver.Chrome(executable_path='chromedriver.exe')
 
 
+# Script method: takes in user inputs and runs script to fetch results from H&R Block tax calculator
 def script(marital_status, head_of_household, age, income, federal_witholdings, state_witholdings):
-    driver.get('https://www.hrblock.com/tax-calculator/')  # visits hrblock's dynamic tax calculator
+    driver.get('https://www.hrblock.com/tax-calculator/')
 
     driver.implicitly_wait(1)  # wait 1 second for page to load before clicking between each new page
 
     # All finds are done on xpath, the full HTML path to an element
-    # Step 1: Press "Calculate Refund" button
+    # Step 1: Press "Calculate Refund" button -> marital status question
     driver.find_element(By.XPATH, "/html/body/main/div/section[1]/div/div/div[1]/div/div[2]/a").click()
 
     driver.implicitly_wait(1)
@@ -89,9 +91,12 @@ def script(marital_status, head_of_household, age, income, federal_witholdings, 
     driver.find_element(By.XPATH, "/html/body/main/div/tax-calculator/div/div/div/section/app-wrapper/form/div/"
                                   "div[2]/div/div/div/app-tp-emp-fed-state-withheld/div[2]/div/div/button[1]").click()
 
+    driver.implicitly_wait(1)
+
     # Step 15: Fetch estimated tax owed
     estimated_tax = driver.find_element(By.XPATH, "/html/body/main/div/tax-calculator/div/div/div/section/app-wrapper/"
                                                   "form/div/div[2]/div/div/div/app-estimation/div[1]/div/h1[2]").text
+
     return estimated_tax
 
 
